@@ -1,4 +1,4 @@
-const { NotImplementedError } = require('../extensions/index.js');
+const { NotImplementedError } = require("../extensions/index.js");
 
 /**
  * In the popular Minesweeper game you have a board with some mines and those cells
@@ -23,11 +23,76 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function minesweeper(matrix) {
+  let res = [];
+  matrix.forEach((a, i) => {
+    let tmp = [];
+    a.forEach((b, j) => {
+      let counter = 0;
+      //left up
+      counter +=
+        matrix[i - 1] === undefined
+          ? 0
+          : matrix[i - 1][j - 1] === undefined
+          ? 0
+          : matrix[i - 1][j - 1];
+      //up
+      counter +=
+        matrix[i - 1] === undefined
+          ? 0
+          : matrix[i - 1][j] === undefined
+          ? 0
+          : matrix[i - 1][j];
+      //up right
+      counter +=
+        matrix[i - 1] === undefined
+          ? 0
+          : matrix[i - 1][j + 1] === undefined
+          ? 0
+          : matrix[i - 1][j + 1];
+      //right
+      counter +=
+        matrix[i] === undefined
+          ? 0
+          : matrix[i][j + 1] === undefined
+          ? 0
+          : matrix[i][j + 1];
+      //right down
+      counter +=
+        matrix[i + 1] === undefined
+          ? 0
+          : matrix[i + 1][j + 1] === undefined
+          ? 0
+          : matrix[i + 1][j + 1];
+      //down
+      counter +=
+        matrix[i + 1] === undefined
+          ? 0
+          : matrix[i + 1][j] === undefined
+          ? 0
+          : matrix[i + 1][j];
+      //down left
+      counter +=
+        matrix[i + 1] === undefined
+          ? 0
+          : matrix[i + 1][j - 1] === undefined
+          ? 0
+          : matrix[i + 1][j - 1];
+      //left
+      counter +=
+        matrix[i] === undefined
+          ? 0
+          : matrix[i][j - 1] === undefined
+          ? 0
+          : matrix[i][j - 1];
+
+      tmp.push(counter);
+    });
+    res.push(tmp);
+  });
+  return res;
 }
 
 module.exports = {
-  minesweeper
+  minesweeper,
 };

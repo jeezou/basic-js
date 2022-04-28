@@ -16,7 +16,6 @@ const { NotImplementedError } = require("../extensions/index.js");
  *
  */
 function renameFiles(files) {
-  let tmp = [...files];
   for (let i = 1; i < files.length; i++) {
     let preArray = files.filter((el, index) => el == files[i] && index < i);
     let preArrayCount = preArray.length;
